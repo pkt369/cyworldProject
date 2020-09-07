@@ -34,7 +34,8 @@ app.set('port', process.env.PORT || 8001);
 
 //app.get('/login',function(req,res){
   //res.send("로그인 성공!");
-//});
+//}); 
+
 
 app.set('view engine', 'html');
 
