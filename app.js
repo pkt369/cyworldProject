@@ -1,4 +1,3 @@
-
 const path = require('path');
 const express = require('express');
 const nunjucks = require('nunjucks');
@@ -12,14 +11,13 @@ dotenv.config();
 
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
+const diaryRouter = require('./routes/diary');
 
 const app = express();
 
 //passportConfig(); // 패스포트 설정
 app.set('port', process.env.PORT || 8001);
 
-//app.use(express.static('views'));
-// app.use(express.static('images'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,21 +32,6 @@ app.use(session({
   },
 }));
 
-//app.get('/',function(req,res){
-//  res.send('<img src="a.jpg" alt="no image" width="250" height="180" >');
-//});
-
-// app.get('/', function(req, res){
-//   fs.readFile('./views/home.html', function(error, data){
-//     res.writeHead(200, { 'Content-Type': 'text/html' } );
-//   } );
-// } );
-
-
-//app.get('/login',function(req,res){
-  //res.send("로그인 성공!");
-//}); 
-
 
 app.set('view engine', 'html');
 
@@ -60,10 +43,11 @@ nunjucks.configure('views', {
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static('images'));
  
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
-//app.use('/auth', authRouter);
+app.use('/diary', diaryRouter);
 
 // app.use((req, res, next) => {
 //   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
