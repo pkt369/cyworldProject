@@ -6,16 +6,37 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/main.css">     
+    <link rel="shortcut icon" href="/images/favi.ico">
+
+
 </head>
      <body>  
+      <div id = "whole">
+        <img id="cyworldLogo" src="/images/logo.jpg" alt="싸이월드 로고" width="230" height="180" title="싸이월드 로고"
+        >
+        <img id="b" src="/images/b.png" alt="메인 화면" width="900" height="400" title="메인 화면"
+        >
 
-        <img id="cyworldLogo" src="/images/logo.jpg" alt="싸이월드 로고" width="200" height="200" title="싸이월드 로고">
+        <div id="main-letter">
+        <h4>당신의 소중한 일상, 싸이월드</h4>
+        </div>
 
-        <div class="profile">
         
 
-        <form id="login-form" action="/auth/login" method="post">
-          
+
+        <div class="profile">
+          <div class="search">
+            <input id="input-search" type="text" placeholder="검색어 입력">
+            <button id="button-search" type="submit" class="s-btn">검색</button>
+        </div>
+
+        <button id="input-homepage" type="submit" class="h-btn">미니홈피</button>
+        <button id="input-homepage" type="submit" class="h-btn">블로그</button>
+        <button id="input-homepage" type="submit" class="h-btn">클럽</button>
+        <button id="input-homepage" type="submit" class="h-btn">뮤직</button>
+
+
+        <form id="login-form" action="/auth/login" method="post">          
           <div class="input-group">
               
               <label for="email">이메일</label>
@@ -25,13 +46,11 @@
               <label for="password">비밀번호</label>
               <input id="password" type="password" name="password" required>
             </div>
-            <a id="join" href="/join" class="btn">회원가입</a>
+            <a id="join" type="submit" href="/join" class="btn">회원가입</a>
           <button id="login" type="submit" class="btn">로그인</button>
-
-          
         </form>
 
-      </div>
+    </div>
 
      </body>
 </html>
