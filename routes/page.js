@@ -1,6 +1,5 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 
@@ -24,12 +23,6 @@ router.get('/join', isNotLoggedIn, (req, res) => { //로그인 안한 상태
   res.render('join', { title: '회원가입 - NodeBird' });
 });
 
-// router.get('/images', (req, res) => {
-//   fs.readFileSync('C:/workspace/nodejs/cyworldProject/images/logo.jpg'), (error, data) => {
-//     res.writeHead(200, { 'Content-type': 'image/jpeg'});
-//     res.end(data);
-//   }; 
-// });
 
 router.get('/', async (req, res, next) => {
   try {
