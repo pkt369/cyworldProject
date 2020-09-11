@@ -1,11 +1,10 @@
 * { box-sizing: border-box; }
 
-body {  }
 
 #whole{
   position: absolute;
   top: 20%;
-  left: 20%;
+  left: 15%;
   height: 250px;
   width: 400px;
   margin: -150px 0px 0px -200px;
@@ -37,10 +36,17 @@ body {  }
     font-size: 12px;
   }
 
-#cyworldLogo {position: absolute; top: 90px; left: 110px;}
+#cyworldLogo {position: absolute; top: 90px; left: 70px;}
 
 #b {position: absolute; top: 300px; left: 500px; 
   }
+
+#c {position: absolute; top: 750px; left: 500px; 
+}
+
+#d {
+  position: absolute; top: 295px; left: 1420px; 
+}
 
 .input-group { margin-bottom: 10px; }
 .input-group label { width: 20%; display: inline-block; }
@@ -48,7 +54,7 @@ body {  }
 
 #main-letter {
   position: absolute;
-  top: 35px; left: 120px;
+  top: 35px; left: 100px;
   font-size: 18px;
   color: rgb(255, 130, 80);
   }
@@ -96,8 +102,9 @@ body {  }
 }
 
 #login-form { 
-  position: absolute; top: 300px; left: 50px;
-  border-radius: 15px; width: 400px; height: 180px;
+  position: absolute; top: 300px; left: 30px;
+  border-radius: 10px;
+  width: 430px; height: 180px;
   background-color: rgb(255, 130, 80); padding: 10px; text-align: left; 
   }
 
@@ -107,12 +114,11 @@ body {  }
   position: absolute; top: 100px; left: 500px;
 }
 
-/* #welcome{
-  position: absolute; top: 270px; left: 400px;
-  font-size: 20px;
+ #welcome{
+  position: relative; top: 300px; left: 450px;
   color: rgb(255, 130, 80);
 }
-*/
+
 
 #join-logo{
   position: absolute; top: 380px; left: 380px;
@@ -128,9 +134,117 @@ body {  }
 }
 
 #join-btn{
-  position: absolute; top: 210px; left: 120px;
+  position: absolute; top: 300px; left: 120px;
 }
 
+/* 캘린더 */
+body {
+	background: #ffffff;
+	font: 87.5%/1.5em 'Lato', sans-serif;
+	margin: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td {
+	padding: 0;
+}
+
+.container {
+  position: absolute; top: 750px; left: 245px;
+  /*left: 50%;
+  position: fixed;
+  top: 50%;*/
+  transform: translate(-50%, -50%);
+}
+
+.calendar-container {
+	position: relative;
+	width: 430px;
+}
+
+.calendar-container header {
+	border-radius: 1em 1em 0 0;
+	background: rgb(255, 130, 80);
+	color: #fff;
+	padding: 3em 2em;
+}
+
+.day {
+	font-size: 8em;
+	font-weight: 900;
+	line-height: 1em;
+}
+
+.month {
+	font-size: 4em;
+	line-height: 1em;
+	text-transform: lowercase;
+}
+
+.calendar {
+	background: #fff;
+	border-radius: 0 0 1em 1em;
+	-webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	color: #555;
+	display: inline-block;
+  padding: 2em;
+  width: 430px;
+}
+
+.calendar thead {
+	color: rgb(255, 130, 80);
+	font-weight: 700;
+   text-transform: uppercase; 
+  text-align: left;
+}
+
+.calendar td {
+	padding: .5em 1em;
+	text-align: left;
+}
+
+.calendar tbody td:hover {
+	background: #cacaca;
+	color: #fff;
+}
+
+.current-day {
+	color: rgb(255, 130, 80);
+}
+
+.prev-month,
+.next-month {
+	color: #cacaca;
+}
+
+.ring-left,
+.ring-right {
+	position: absolute;
+	top: 230px;
+}
+
+.ring-left { left: 2em; }
+.ring-right { right: 2em; }
+
+.ring-left:before,
+.ring-left:after,
+.ring-right:before,
+.ring-right:after {
+	background: #fff;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+	box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+	content: "";
+	display: inline-block;
+	margin: 8px;
+	height: 32px;
+	width: 8px;
+}
 
 
 
