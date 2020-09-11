@@ -1,1 +1,26 @@
-#diaryBase { width: 90%; }
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    text-align: center;
+    position: absolute;
+    width: 1054px;
+    top: 10px;
+    left: 50%;
+    padding: 10px;
+    margin-left: -538px;
+}
+.diaryBase { float: left; width: 850px; }
+.musicBlock { 
+    background-color: black;
+    color: purple;
+    width: 150px;
+    height: 200px;
+    padding: 20px;
+    float: left;
+    margin-left: 10px;
+ }
+.profile_picture { position: absolute; left: 70px; top: 110px;  width: 170px;}
