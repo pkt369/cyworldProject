@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
     } catch (error) {
         console.error(error);
         next(err);
-    }
+    } 
 });
 
 module.exports = router;

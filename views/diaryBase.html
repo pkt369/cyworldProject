@@ -7,8 +7,14 @@
     <title>diaryBase</title>
 </head>
 <body>
-    <!--블럭으로 공유하는 곳-->
-    <img id="diaryBase" src="/images/diaryBase.png" alt="기본다이어리배경">
-
+    <div class="wrapper">
+        <div><img class="diaryBase" src="/images/diaryBase.png" alt="기본다이어리배경"></div>
+        <div class="musicBlock">1</div>
+        <img class="profile_picture" src="/images/basicMan.png" alt="기본이미지">
+    
+    
+    {% if user.picture %}
+    {% endif %}
+    
 </body>
 </html>
