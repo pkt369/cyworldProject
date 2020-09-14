@@ -1,0 +1,60 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.lately_post {
+    position: absolute;
+    left: 300px;
+    top: 200px;
+    color: rgb(0, 153, 204);
+    font-weight: bold;
+}
+
+#diary_letter {
+    position: absolute;
+    left: 548px;
+    top: 233px;
+    font-size: 14px;
+}
+
+#picture_letter {
+    position: absolute;
+    left: 548px;
+    top: 264px;
+    font-size: 14px;
+}
+
+#music_letter {
+    position: absolute;
+    left: 548px;
+    top: 293px;
+    font-size: 14px;
+}
+
+#guestbook_letter {
+    position: absolute;
+    left: 670px;
+    top: 233px;
+    font-size: 14px;
+}
+
+#miniroom_letter {
+    position: absolute;
+    left: 300px;
+    top: 340px;
+    color: rgb(0, 153, 204);
+    font-weight: bold;
+}
+
+#miniroom {
+    position: absolute;
+    left: 300px;
+    top: 363px;
+    width: 470px;
+    height: 180px;
+    border: 2px solid rgb(227, 227, 227);
+}
