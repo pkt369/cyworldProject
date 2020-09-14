@@ -3,11 +3,13 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+//const { Model } = require('sequelize/types');
 
 const router = express.Router();
 
+
 router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
-    const { email, nick, password, gender } = req.body;
+    const { email, nick, password } = req.body;
     try {
       const exUser = await User.findOne({ where: { email } });
       if (exUser) { // 이메일로 가입한 사용자 존재하면
@@ -43,7 +45,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
         }
         return res.redirect('/');
       });
-    })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
+    })(req, res, next); // 미들웨어 내의 미들웨어
   });
   
   router.get('/logout', isLoggedIn, (req, res) => { //로그아웃

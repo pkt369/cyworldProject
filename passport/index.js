@@ -7,10 +7,10 @@ module.exports = () => {
     done(null, user.id);
   });
 
-  passport.deserializeUser((id, done) => { //deserializeUser: 매 요청 시 실행
+  /* passport.deserializeUser((id, done) => { //deserializeUser: 매 요청 시 실행
     User.findOne({where: { id } })
       .then(user => done(null, user))
       .catch(err => done(err));
-  });
-  local();
+  }); */
+  local(); 
 };
