@@ -7,14 +7,80 @@
     <title>diaryBase</title>
 </head>
 <body>
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
     <div class="wrapper">
         <div><img class="diaryBase" src="/images/diaryBase.png" alt="기본다이어리배경"></div>
         <div class="musicBlock">1</div>
         <img class="profile_picture" src="/images/basicMan.png" alt="기본이미지">
-    
-    
+        <div class="profile_introduce">나만의 스타일로 자기소개를 입력해 주세요.</div>
+        <hr style="position: absolute; 
+            border: none; 
+            height: 2px; 
+            width: 160px; 
+            left: 70px; 
+            top: 510px; 
+            color: rgb(227, 227, 227); 
+            background-color:  rgb(227, 227, 227);">
+        <div class="name_letter">이름</div>
+
+        <button class="menu_button bu_home">홈</button>
+        <button class="menu_button bu_guestbook">방명록</button>
+        <button class="menu_button bu_images">사진첩</button>
+        <div id="content"></div>
+    </div>
     {% if user.picture %}
     {% endif %}
+
+    <script>
+        $(document).on('click', '.bu_home', () => {
+            $.ajax({
+                url: '/views/diary_home.html',
+                type: 'GET',
+                dataType: 'html',
+                success: (data) => {
+                    $('#content').html(data)
+                },
+                error: (err) => {
+                    alert(err)
+                },
+                error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+            });
+        });
+
+        $(document).on('click', '.bu_guestbook', () => {
+            $.ajax({
+                url: '/views/diary_guestbook.html',
+                type: 'GET',
+                dataType: 'html',
+                success: (data) => {
+                    $('#content').html(data),
+                    alert(data)
+                },
+                error: (err) => {
+                    alert(err);
+                },
+            });
+        });
+
+        $(document).on('click', '.bu_images', () => {
+            $.ajax({
+                url: '/views/diary_images.html',
+                type: 'GET',
+                dataType: 'html',
+                success: (data) => {
+                    $('#content').html(data),
+                    alert(data)
+                },
+                error: (err) => {
+                    alert(err);
+                },
+            });
+        });
+                
+
+        
+    </script>
     
 </body>
 </html>
