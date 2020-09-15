@@ -34,15 +34,15 @@
             <button id="button-search" type="submit" class="s-btn">검색</button>
         </div>
 
-        <button id="input-homepage" type="submit" class="h-btn">미니홈피</button>
-        <button id="input-homepage" type="submit" class="h-btn">블로그</button>
-        <button id="input-homepage" type="submit" class="h-btn">클럽</button>
-        <button id="input-homepage" type="submit" class="h-btn">뮤직</button>
+        <a id="input-homepage" type="submit" href="/diary" class="h-btn">미니홈피</a>
+        <a id="input-homepage" type="submit" class="h-btn">블로그</a>
+        <a id="input-homepage" type="submit" class="h-btn">클럽</a>
+        <a id="input-homepage" type="submit" class="h-btn">뮤직</a>
 
         <!-- 로그인 시 바뀐 화면 -->
         <form id="login-complete-form">          
  
-          <div class="user-name">{{ user.nick + '님' }}</div>
+          <div class="user-name">{{ '어서오세요, ' + user.nick + '님' }}</div>
 
           <a id="mini-homepage" href="/diary" class="btn">미니홈피</a>
           <a id="logout" href="/auth/logout" class="btn">로그아웃</a>

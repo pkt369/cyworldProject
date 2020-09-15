@@ -162,6 +162,24 @@ html, body{
 
 }
 
+/* 로그인 화면 css */
+.user-name{
+  position: absolute; top: 40px; left: 40px;
+  font-size: 25px;
+}
+
+#mini-homepage{
+  position: absolute; top: 90px; left: 50px;
+}
+
+#logout{
+  position: absolute; top: 90px; left: 120px;
+}
+
+
+
+
+
 /* 캘린더 */
 body {
 	background: #ffffff;
