@@ -56,10 +56,10 @@ sequelize.sync({ force: false })
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static('images'));
- 
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/views', express.static('views'));
 
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
