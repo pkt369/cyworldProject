@@ -9,9 +9,12 @@ const router = express.Router();
 
 
 router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
-    const { email, nick, password } = req.body;
+      
+    const { email, nick, password, gender } = req.body;
     try {
+      
       const exUser = await User.findOne({ where: { email } });
+      
       if (exUser) { // 이메일로 가입한 사용자 존재하면
         return res.redirect('/join?error=exist');
       }
@@ -27,7 +30,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
       console.error(error);
       return next(error);
     }
-  });
+});
   
   router.post('/login', isNotLoggedIn, (req, res, next) => { //로그인
     passport.authenticate('local', (authError, user, info) => {
@@ -43,9 +46,10 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
           console.error(loginError);
           return next(loginError);
         }
-        return res.redirect('/');
+        return res.redirect('/login_home');
       });
-    })(req, res, next); // 미들웨어 내의 미들웨어
+    })
+    (req, res, next); // 미들웨어 내의 미들웨어
   });
   
   router.get('/logout', isLoggedIn, (req, res) => { //로그아웃

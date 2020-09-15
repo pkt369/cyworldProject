@@ -13,7 +13,7 @@ router.use((req, res, next) => { //라우터용 미들웨어 생성
   next();
 });
 
-router.get('/login', isLoggedIn, (req, res) => { //로그인 상태
+router.get('/login_home', isLoggedIn, (req, res) => { //로그인 상태
   res.render('login_home');
 });
 
@@ -24,8 +24,6 @@ router.get('/join', isNotLoggedIn, (req, res) => { //로그인 안한 상태
 
 router.get('/', async (req, res, next) => {
   
-     res.render('home') } );
-  
-
+    res.render('home') } );
 
 module.exports = router;
