@@ -1,11 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diray_guestbook</title>
-</head>
-<body>
+<style>
+    #cover_box {
+        position: absolute;
+        left: 340px;
+        top: 620px;
+        width: 570px;
+        height: 60px;
+        border: 2px solid #e9dcdc;
+        background-color: #e9dcdc;
+
+    }
+    #guestbook_textarea {
+        position: absolute;
+        left: 350px;
+        top: 630px;
+        width:  480px;
+        height: 40px;
+        
+        
+    }
+    #guestbook_submit {
+        border: none;
+        color: white;
+        padding: 12px 13px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 13px;
+        cursor: pointer;    
+
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+
+        position: absolute;
+        left: 850px;
+        top: 630px;
+
+    }
+
     
-</body>
-</html>
+</style>
+
+<form id="guestbook_form" method="post">
+    <div id="cover_box"></div>
+    <textarea id="guestbook_textarea" id="guestbook_textarea"></textarea>
+    <button id="guestbook_submit" type="submit">확인</button>
+</form>

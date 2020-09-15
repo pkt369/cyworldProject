@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "admin1234",
-    "database": "cyworld_login",
+    "database": "cyworld",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
