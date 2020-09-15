@@ -5,7 +5,7 @@ const passport = require('passport');
 const dotenv = require('dotenv');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
+const multer = require('multer');
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ const app = express();
 passportConfig(); // 패스포트 설정
 app.set('port', process.env.PORT || 8001);
 
-
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -38,11 +38,11 @@ app.use(session({
 
 
 app.set('view engine', 'html');
-
 nunjucks.configure('views', {
   express: app,
   watch: true,
 });
+
 
 sequelize.sync({ force: false })
   .then(() => {
@@ -53,12 +53,11 @@ sequelize.sync({ force: false })
   });
 
 
-app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/images', express.static('images'));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static('images'));
 app.use('/views', express.static('views'));
 
 app.use('/', pageRouter);

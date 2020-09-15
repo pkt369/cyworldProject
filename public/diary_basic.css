@@ -23,7 +23,19 @@ html, body{
     float: left;
     margin-left: 30px;
  }
-.profile_picture { position: absolute; left: 100px; top: 200px;  width: 170px;}
+.profile_picture { 
+    position: absolute; 
+    left: 90px; 
+    top: 200px;  
+    width: 170px; 
+    height: 150px;
+    background-image: url("/images/basicMan.png"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    outline: none;
+}
+
 .profile_introduce { position: absolute; left: 90px; top: 350px;  width: 170px; word-break: keep-all; font-size: 14px;}
 
 .name_letter {

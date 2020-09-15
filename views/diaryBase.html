@@ -11,7 +11,10 @@
     <div class="wrapper">
         <div><img class="diaryBase" src="/images/diaryBase.png" alt="기본다이어리배경"></div>
         <div class="musicBlock">1</div>
-        <img class="profile_picture" src="/images/basicMan.png" alt="기본이미지">
+        <form id="change_img_form" action="/uploads" method="post">
+            <button type="button" class="profile_picture" onclick="alert('ㅎㅇ')"></button>
+        </form>
+        
         <div class="profile_introduce">나만의 스타일로 자기소개를 입력해 주세요.</div>
         <hr style="position: absolute; 
             border: none; 
@@ -21,7 +24,7 @@
             top: 550px; 
             color: rgb(227, 227, 227); 
             background-color:  rgb(227, 227, 227);">
-        <div class="name_letter">이름</div>
+        <div class="name_letter">{{user.nick}}</div>
 
         <button class="menu_button bu_home">홈</button>
         <button class="menu_button bu_guestbook">방명록</button>
@@ -29,10 +32,10 @@
         <button class="menu_button bu_diary">다이어리</button>
         <div id="content"></div>
     </div>
-    {% if user.picture %}
-    {% endif %}
 
     <script>
+       
+
         $(document).on('click', '.bu_home', () => {
             $.ajax({
                 url: '/views/diary_home.html',
