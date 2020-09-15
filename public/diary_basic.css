@@ -7,13 +7,13 @@ html, body{
 .wrapper {
     text-align: center;
     position: absolute;
-    width: 1074px;
+    width: 1200px;
     top: 10px;
     left: 50%;
     padding: 100px 10px 10px 10px;
-    margin-left: -548px;
+    margin-left: -620px;
 }
-.diaryBase { float: left; width: 850px; top:200px;}
+.diaryBase { float: left; width: 980px; top:200px;}
 .musicBlock { 
     background-color: black;
     color: purple;
@@ -23,19 +23,19 @@ html, body{
     float: left;
     margin-left: 30px;
  }
-.profile_picture { position: absolute; left: 70px; top: 200px;  width: 170px;}
-.profile_introduce { position: absolute; left: 70px; top: 340px;  width: 170px; word-break: keep-all; font-size: 14px;}
+.profile_picture { position: absolute; left: 100px; top: 200px;  width: 170px;}
+.profile_introduce { position: absolute; left: 90px; top: 350px;  width: 170px; word-break: keep-all; font-size: 14px;}
 
 .name_letter {
     position: absolute;
     left: 70px;
-    top: 530px;
+    top: 570px;
 }
 
 .menu_button {
     position: absolute;
-    width: 65px;
-    line-height: 35px;
+    width: 70px;
+    line-height: 40px;
     color: #fff;
     border-radius: 0 5px 5px 0;
     font-family: 'Lato', sans-serif;
@@ -72,24 +72,24 @@ html, body{
 
 .bu_home {
     position: absolute;
-    left: 817px;
-    top: 195px;
+    left: 942px;
+    top: 210px;
 }
 
 .bu_guestbook {
     position: absolute;
-    left: 817px;
-    top: 245px;
+    left: 942px;
+    top: 260px;
 }
 
 .bu_images {
     position: absolute;
-    left: 817px;
-    top: 295px;
+    left: 942px;
+    top: 310px;
 }
 
 .bu_diary {
     position: absolute;
-    left: 817px;
-    top: 345px;
+    left: 942px;
+    top: 360px;
 }
