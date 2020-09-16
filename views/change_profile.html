@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>change_profile</title>
+</head>
+<body>
+    <form id="change_img_form" action="/diary/upload" method="post">
+        <input type="file" src="/images/basicMan.png" class="profile_picture"></button>
+    </form>
+    <div class="profile_introduce">{{user.message}}</div>
+</body>
+</html>
+
+<style>
+.profile_picture { 
+    position: absolute; 
+    left: 90px; 
+    top: 200px;  
+    width: 170px; 
+    height: 150px;
+    background-image: url("/images/basicMan.png"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    outline: none;
+}
+
+.profile_introduce { position: absolute; left: 90px; top: 350px;  width: 170px; word-break: keep-all; font-size: 14px;}
+</style>
+
+<script>
+alert(user);
+</script>
