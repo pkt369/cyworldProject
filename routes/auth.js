@@ -57,5 +57,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
     req.session.destroy(); //req.session의 정보 제거
     res.redirect('/');
   });
+
+
   
   module.exports = router;
