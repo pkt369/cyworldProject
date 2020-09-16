@@ -11,11 +11,23 @@
     <div class="wrapper">
         <div><img class="diaryBase" src="/images/diaryBase.png" alt="기본다이어리배경"></div>
         <div class="musicBlock">1</div>
-        <form id="change_img_form" action="/uploads" method="post">
-            <button type="button" class="profile_picture" onclick="alert('ㅎㅇ')"></button>
+        <button class="changeButton" onclick="changeMode()">수정</button>
+        <!-- <form class="change_img_form" action="/diary/upload" method="post">
+            {% if user.image %}
+                <input type="file" src="{{user.image}}" class="profile_picture"></button>
+            {% else %}
+                <input type="file" src="/images/basicMan.png" class="profile_picture"></button>
+            {% endif %} 
         </form>
+        <div class="profile_introduce">{{user.message}}</div> -->
         
-        <div class="profile_introduce">나만의 스타일로 자기소개를 입력해 주세요.</div>
+        <div class="profile">
+            {% if user.image %}
+            <img src={{user.image}} class="profile_picture">
+            {% else %}
+            <img src='/images/basicMan.png' class="profile_picture">
+            {% endif %}
+            <p class="profile_introduce">{{user.message}}</p></div>
         <hr style="position: absolute; 
             border: none; 
             height: 2px; 
@@ -30,11 +42,72 @@
         <button class="menu_button bu_guestbook">방명록</button>
         <button class="menu_button bu_images">사진첩</button>
         <button class="menu_button bu_diary">다이어리</button>
-        <div id="content"></div>
+        <div class="content" ></div>
     </div>
 
     <script>
-       
+        $(document).ready(function(){
+            $(".content").load("/views/diary_home.html");
+            
+        });
+        // $(document).ready(function(){
+        //     $(".profile").load("/views/change_profile.html");
+        // });
+        var check = false;
+        
+        function changeMode() {
+            if(check === true){
+                check = false;
+                location.reload();
+            }
+            else if(check === false){
+                check = true;
+                $.ajax({
+                url: '/views/change_profile.html',
+                type: 'GET',
+                dataType: 'html',
+                success: (data) => {
+                    $('.profile').html(data)
+                },
+                error: (err) => {
+                    alert(err)
+                },
+                error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+            });
+            }
+            alert(check);
+        }
+
+        // $(document).on('click', '.changeButton', check === true, () => {
+            
+        // });
+
+        // $(document).on('click', '.changeButton', check === false, () => {
+        //    document.write(<p><a href="/diary">Redirect</a></p>);
+        // });
+
+
+        // $(document).on('click', '.changeButton', check === false, () => {
+        //     $.ajax({
+        //         url: '/views/diaryBase.html',
+        //         type: 'GET',
+        //         dataType: 'html',
+        //         success: (data) => {
+        //             var e = $(data).find('.profile');
+        //             $('.profile').html(e);
+        //         },
+        //         error: (err) => {
+        //             alert(err)
+        //         },
+        //     });
+        // });
+        // $('.changeButton').click(check == false, () => {
+        //     $('.profile').load(location.href + '.profile');
+        //     console.log(check);
+        // });
+
+        
 
         $(document).on('click', '.bu_home', () => {
             $.ajax({
@@ -42,7 +115,7 @@
                 type: 'GET',
                 dataType: 'html',
                 success: (data) => {
-                    $('#content').html(data)
+                    $('.content').html(data)
                 },
                 error: (err) => {
                     alert(err)
@@ -58,7 +131,7 @@
                 type: 'GET',
                 dataType: 'html',
                 success: (data) => {
-                    $('#content').html(data)
+                    $('.content').html(data)
                 },
                 error: (err) => {
                     alert(err);
@@ -72,7 +145,7 @@
                 type: 'GET',
                 dataType: 'html',
                 success: (data) => {
-                    $('#content').html(data)
+                    $('.content').html(data)
                 },
                 error: (err) => {
                     alert(err);
@@ -86,7 +159,7 @@
                 type: 'GET',
                 dataType: 'html',
                 success: (data) => {
-                    $('#content').html(data)
+                    $('.content').html(data)
                 },
                 error: (err) => {
                     alert(err);

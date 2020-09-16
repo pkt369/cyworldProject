@@ -12,7 +12,7 @@ module.exports = class User extends Sequelize.Model {
       },
       nick: {
         type: Sequelize.STRING(50),
-        allowNull: true,
+        allowNull: false,
       },
       password: {
         type: Sequelize.STRING(100),
@@ -22,8 +22,15 @@ module.exports = class User extends Sequelize.Model {
         type: Sequelize.STRING(4),
         allowNull: false,
       },
-      
-      
+      image: {
+        type: Sequelize.STRING(200),
+        allowNull: true,
+      },
+      message: {
+      type: Sequelize.STRING(200),
+      allowNull: false,
+      defaultValue: '나만의 스타일로 자기소개를 입력해 주세요.',
+      },
     }, {
       sequelize,
       timestamps: true,

@@ -8,12 +8,12 @@ const { User, Guestbook } = require('../models');
 
 const router = express.Router();
 
-// try {
-//     fs.readFileSync('uploads');
-// } catch (error) {
-//     console.error('uploads 폴더가 없어 uploads폴더를 생성합니다.');
-//     fs.mkdirSync('uploads');
-// }
+try {
+    fs.readdirSync('uploads');
+} catch (error) {
+    console.error('uploads 폴더가 없어 uploads폴더를 생성합니다.');
+    fs.mkdirSync('uploads');
+}
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -28,9 +28,11 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-router.post('/upload', isLoggedIn,  (req, res) => {
+router.post('/upload', upload.single('image'), (req, res) => {
     console.log('ㅎㅇㅎㅇ');
-    res.json({ url: `/image/${req.file.filename }`});
+    console.log(req.file, req.body);
+    res.send('ok');
+    //res.json({ url: `/image/${req.file.filename }`});
 });
 
 // const upload2 = multer();
@@ -44,7 +46,6 @@ router.post('/upload', isLoggedIn,  (req, res) => {
 
 router.use((req, res, next) => {
     res.locals.user = req.user; //유저의 정보를 넘겨주기
-        
     next();
 });
 
@@ -57,8 +58,8 @@ router.get('/', (req, res, next) => {
     } 
 });
 
-router.get('/upload', (req, res) => {
-    res.sendFile(path.join(__dirname))
-})
+// router.get('/upload', (req, res) => {
+//     res.sendFile(path.join(__dirname))
+// })
 
 module.exports = router;
