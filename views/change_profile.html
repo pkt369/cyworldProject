@@ -3,33 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>change_profile</title>
+    <title>change_profile</title>ㅂ
 </head>
 <body>
-    <form id="change_img_form" action="/diary/upload" method="post">
-        <input type="file" src="/images/basicMan.png" class="profile_picture"></button>
-    </form>
-    <div class="profile_introduce">{{user.message}}</div>
+    <!-- <form id="change_img_form" action="/diary/upload" method="post"> -->
+        <img class="image_preview" src="/images/basicMan.png" style="display: none; width: 250px;">
+        <input class= "image-url" type="hidden" name="url">
+
+        <label class="image-label" for="profile_picture">프로필사진</label>
+        <input class="profile_picture" type="file" accept="image/*">
+        <textarea class="profile_introduce"></textarea>
+        <button class="profile_btn" type="submit" >확인</button>
+
+        <!-- <div class="img-preview">
+            <img id="img-preview" src="" style="display: none;" width="250" alt="미리보기"> 
+            <input id="img-url" type="hidden" name="url"> 
+          </div>
+          <div>
+            <label id="img-label" for="img">사진 업로드</label>
+            <input id="img" type="file" accept="image/*">
+            <button id="twit-btn" type="submit" class="btn">짹짹</button>
+          </div> -->
+    <!-- </form> -->
+    
 </body>
 </html>
 
 <style>
-.profile_picture { 
-    position: absolute; 
+.image-label { 
+    /* position: absolute; 
     left: 90px; 
     top: 200px;  
     width: 170px; 
     height: 150px;
     background-image: url("/images/basicMan.png"); 
     background-repeat: no-repeat;
-    background-size: cover;
-    border: none;
-    outline: none;
+    background-size: cover; */
 }
 
-.profile_introduce { position: absolute; left: 90px; top: 350px;  width: 170px; word-break: keep-all; font-size: 14px;}
+.profile_btn {
+  position: absolute;
+  left: 200px;
+  top: 150px;
+}
+
+.profile_introduce { position: absolute; left: 90px; top: 350px;  width: 170px; height: 40px; word-break: keep-all; font-size: 14px;}
+
+
 </style>
 
 <script>
-alert(user);
+ if (document.getElementsByClassName('profile_picture')) {
+    alert('1차');
+      $('profile_picture').addEventListener('change', function(e) {
+        alert('2차');
+        console.log('2차');
+        const formData = new FormData();
+        console.log(this, this.files);
+        formData.append('addEventListener', this.files[0]);
+        axios.post('/diary/image', formData)
+          .then((res) => {
+            alert('고고');
+            document.getElementsByClassName('image-url').value = res.data.url;
+            document.getElementsByClassName('image_preview').src = res.data.url;
+            document.getElementsByClassName('image_preview').style.display = 'inline';
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      });
+    }
 </script>

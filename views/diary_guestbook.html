@@ -1,3 +1,7 @@
+{% extends 'diaryBase.html' %}
+
+{% block style %}
+
 <style>
     #cover_box {
         position: absolute;
@@ -39,9 +43,12 @@
 
     
 </style>
+{% endblock %}
 
+{% block content %}
 <form id="guestbook_form" method="post">
     <div id="cover_box"></div>
     <textarea id="guestbook_textarea" id="guestbook_textarea"></textarea>
     <button id="guestbook_submit" type="submit">확인</button>
 </form>
+{% endblock %}
