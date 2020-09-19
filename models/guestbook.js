@@ -6,6 +6,14 @@ module.exports = class Guestbook extends Sequelize.Model {
             content: {
                 type: Sequelize.STRING(2000),
                 allowNull: false,
+            },
+            host_email: {
+                type: Sequelize.STRING(100),
+                allowNull: false,
+            },
+            writer_email: {
+                type: Sequelize.STRING(100),
+                allowNull: false,
             }
         }, {
             sequelize,
