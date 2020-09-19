@@ -11,17 +11,16 @@
         height: 60px;
         border: 2px solid #e9dcdc;
         background-color: #e9dcdc;
-
     }
+
     #guestbook_textarea {
         position: absolute;
         left: 350px;
         top: 630px;
         width:  480px;
-        height: 40px;
-        
-        
+        height: 40px;  
     }
+
     #guestbook_submit {
         border: none;
         color: white;
@@ -38,7 +37,16 @@
         position: absolute;
         left: 850px;
         top: 630px;
+    }
 
+    .content {
+        position: absolute;
+        left: 340px;
+        top: 150px;
+        width: 570px;
+        height: 470px;
+        border: 2px solid #e9dcdc;
+        background-color: #e9dcdc;
     }
 
     
@@ -46,9 +54,15 @@
 {% endblock %}
 
 {% block content %}
-<form id="guestbook_form" method="post">
+<div id="content">
+    {% for i in guestbook %}
+
+    {% endfor %}
+</div>
+
+<form id="guestbook_form" method="post" action="/diary/{{user.email}}/guestbookCreate">
     <div id="cover_box"></div>
-    <textarea id="guestbook_textarea" id="guestbook_textarea"></textarea>
+    <textarea id="guestbook_textarea" name="content"></textarea>
     <button id="guestbook_submit" type="submit">확인</button>
 </form>
 {% endblock %}
