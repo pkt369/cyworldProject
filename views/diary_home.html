@@ -1,4 +1,6 @@
-<!-- <link rel="stylesheet" href="/diary_home.css"> -->
+{% extends 'diaryBase.html' %}
+
+{% block style %}
 <style>
     html, body {
     width: 100%;
@@ -60,7 +62,10 @@
     border: 2px solid rgb(227, 227, 227);
 }
 </style>
+{% endblock %}
 
+
+{% block content %}
 <div class="lately_post">최근 게시물</div>
 <hr style="position: absolute; 
     border: none; 
@@ -110,5 +115,6 @@
 
 <div id="miniroom_letter">미니룸</div>
 <div id="miniroom"></div>
+{% endblock %}
 
 
