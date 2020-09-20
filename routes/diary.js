@@ -54,6 +54,7 @@ router.post('/:id/guestbookCreate', isLoggedIn, async (req, res, next) => {
       content: req.body.content,
       host_email: req.params.id, //주인
       writer_email: req.user.email, //적은 사람
+      UserId: req.user.id, //적은사람
     });
     res.redirect(`/diary/${req.params.id}/guestbook`);
   } catch (error) {
@@ -100,10 +101,17 @@ router.get('/:id/diary', async (req, res, next) => {
 
 router.get('/:id/guestbook', async (req, res, next) => {
   try {
-    const user = await User.findOne({ where: { email: req.params.id } });
-    const guestbook = await Guestbook.findAll({ where: { host_email: req.params.id }});
+    const user = await User.findOne({ where: { email: req.params.id } }); //주인의 이메일
+    // const guestbook = await Guestbook.findAll({ where: { host_email: req.params.id }}); //주인의 이메일
+    const guestbook = await Guestbook.findAll({
+      include: [{
+        model: User,
+      }],
+      where: { host_email: req.params.id }, //주인의 홈피에 글이 적힌 유저의 정보를 같이 가져와달라..
+      order: [['createdAt', 'DESC']], //맨위가 최근
+    });
   if (user) {
-    await res.render('diary_guestbook', { user : user, guestbook: guestbook}); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
+    await res.render('diary_guestbook', { user : user, guestbook: guestbook }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
   } else {
     res.status(404).send('no user');
   }
