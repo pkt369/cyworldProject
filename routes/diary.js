@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { User, Guestbook } = require('../models');
+const { User, Guestbook, Post } = require('../models');
 
 const router = express.Router();
 
@@ -63,6 +63,22 @@ router.post('/:id/guestbookCreate', isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post('/:id/diarypost', isLoggedIn, async (req, res, next) => { 
+  try {
+    console.log(req.user.email);
+    console.log(req.params.id);
+    const post = await Post.create({
+      content: req.body.content,
+       nick: req.params.id,
+      title: req.body.title,
+    });
+    res.redirect(`/diary/${req.params.id}/diary`);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 
 router.use((req, res, next) => {
     //res.locals.user = req.user; //유저의 정보를 넘겨주기
@@ -87,8 +103,15 @@ router.get('/:id', async (req, res, next) => {
 router.get('/:id/diary', async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { email: req.params.id } });
+    const post = await Post.findAll({
+      include: [{
+        model: User,
+      }],
+      where: { nick: req.params.id },
+      order: [['createdAt', 'DESC']], //맨위가 최근
+    });
   if (user) {
-    await res.render('diary_diary', { user : user }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
+    await res.render('diary_diary', { user : user, post: post }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
   } else {
     res.status(404).send('no user');
   }
@@ -98,6 +121,7 @@ router.get('/:id/diary', async (req, res, next) => {
       next(err);
   } 
 });
+
 
 router.get('/:id/guestbook', async (req, res, next) => {
   try {
