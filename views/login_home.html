@@ -21,8 +21,35 @@
         <img id="c" src="/images/main-b.png" alt="메인 화면" width="800" height="150" title="메인 화면"
         >
 
-        <img id="d" src="/images/main-c.png" alt="메인 화면" width="330" height="800" title="메인 화면"
+        <img id="d" src="/images/main-c.png" alt="메인 화면" width="330" height="500" title="메인 화면"
         >
+
+        <div id="user-outer">
+          <table id="user-write">
+            <tbody>
+              
+                <h2 class = "go-mini">미니홈피 놀러가기</h2>
+             
+
+                <tr class="user-nick">                 
+                  <td class="user-nick-column">{{user.nick}}</td>
+                  <br>
+                  <a class="user-nick-link" href="http://localhost:8001/diary/{{user.email}}">미니홈피 바로가기</a>
+                </tr>  
+
+                <!-- <tr class="user-nick">                 
+                  <td class="user-nick-column">qlq</td>
+                  <br>
+                  <a class="user-nick-link" href="http://localhost:8001/diary/sklove96@naver.com">미니홈피 바로가기</a>
+                </tr>  -->
+
+                  
+
+                
+              </tbody>
+            
+            </table>
+        </div>
 
         <div id="main-letter">
         <h4>당신의 소중한 일상, 싸이월드</h4>
