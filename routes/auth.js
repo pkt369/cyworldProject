@@ -3,6 +3,7 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
+const { PhotoFolder } = require('../models');
 //const { Model } = require('sequelize/types');
 
 const router = express.Router();
@@ -19,11 +20,15 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => { //회원가입
         return res.redirect('/join?error=exist');
       }
       const hash = await bcrypt.hash(password, 12); //암호화
-      await User.create({
+      const user = await User.create({
         email,
         nick,
         password: hash,
         gender,
+      });
+      await PhotoFolder.create({
+        folder: '기본폴더',
+        UserId: user.id,
       });
       return res.redirect('/');
     } catch (error) {

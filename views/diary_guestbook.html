@@ -9,8 +9,8 @@
         top: 620px;
         width: 570px;
         height: 60px;
-        border: 2px solid #e9dcdc;
-        background-color: #e9dcdc;
+        border: 2px solid rgb(240,240,240);
+        background-color: rgb(240,240,240);
     }
 
     #guestbook_textarea {
@@ -45,7 +45,7 @@
         top: 200px;
         width: 570px;
         height: 400px;
-        border: 2px solid #e9dcdc;
+        border: 2px solid rgb(240,240,240);
         overflow: auto;
     }
 
@@ -64,13 +64,13 @@
     }
 
     .silver_background {
-        background-color: silver;
+        background-color: rgb(240,240,240);
         margin: 0;
         padding: 0;
     }
 
     .img_td {
-        padding-left: 30px;
+        padding-left: 15px;
         float: left; 
         width: 30%;
     }
@@ -98,7 +98,7 @@
             <!-- <td style="font-size: 10px;">{{i.createdAt}}</td> -->
         </tr>
         <tr style="display: table;">
-            <td class="img_td"><img src="/images/basicMan.png"></td>
+            <td class="img_td"><img src="{{i.User.image}}" style="width: 170px; height: 150px; padding-right: 30px;"></td>
             <td class="content_td">{{i.content}}</td>
         </tr>
         <tr style="height: 20px;"><td></td></tr>
@@ -107,6 +107,21 @@
     </tbody>
     </table>
 </div>
+
+
+    <img src="{{user.image}}" class="profile_picture"></button>
+
+    <div class="profile_introduce">{{user.message}}</div>
+
+    <hr style="position: absolute; 
+    border: none; 
+    height: 2px; 
+    width: 200px; 
+    left: 70px; 
+    top: 550px; 
+    color: rgb(227, 227, 227); 
+    background-color:  rgb(227, 227, 227);">
+<div class="name_letter">{{user.nick}}</div>
 
 <form id="guestbook_form" method="post" action="/diary/{{user.email}}/guestbookCreate">
     <div id="cover_box"></div>
