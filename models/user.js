@@ -24,12 +24,13 @@ module.exports = class User extends Sequelize.Model {
       },
       image: {
         type: Sequelize.STRING(200),
-        allowNull: true,
+        allowNull: false,
+        defaultValue: '/images/basicMan.png'
       },
       message: {
-      type: Sequelize.STRING(200),
-      allowNull: false,
-      defaultValue: '나만의 스타일로 자기소개를 입력해 주세요.',
+        type: Sequelize.STRING(200),
+        allowNull: false,
+        defaultValue: '나만의 스타일로 자기소개를 입력해 주세요.',
       },
     }, {
       sequelize,
@@ -44,6 +45,7 @@ module.exports = class User extends Sequelize.Model {
   }
   static associate(db){
     db.User.hasMany(db.Guestbook);
+    db.User.hasMany(db.PhotoFolder);
   }
 
 };

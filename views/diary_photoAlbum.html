@@ -1,0 +1,114 @@
+{% extends 'diaryBase.html' %}
+
+{% block content %}
+
+<div id="photo_letter">Photo Album</div>
+
+<hr id="photo_line">
+
+<div id="folder_outer">
+    <div class="folder_name" style="font-size: 16px"><a href="#">전체보기</a></div>
+    {% for folder in folders %}
+        <div class="folder_name"><a href="#">{{folder.folder}}</a></div>
+    {% endfor %}
+ 
+</div>
+
+
+<div id="photo_outer">
+    <button class="photo_bu file_upload"><a href="/diary/{{user.email}}/photo_upload" 
+        onclick="window.open(this.href, '_blank', 'left= 300px,top= 500px,width=300px,height=500px,toolbars=no,scrollbars=no'); 
+        return false;">파일올리기</a></button>
+    <table id="write">
+        <tbody>
+        {% for photo in photos %}
+        
+            <tr class="silver_background">
+                <td class="name_td" colspan="2">{{photo.title}} <span style="font-size: 10px">{{photo.createdAt}}</span></td>
+                <!-- <td style="font-size: 10px;">{{i.createdAt}}</td> -->
+            </tr>
+            <tr style="display: table;">
+                <td class="content_td">{{photo.image}}</td>
+            </tr>
+            <tr style="height: 20px;"><td></td></tr>
+            
+        {% endfor %}
+        </tbody>
+        </table>
+</div>
+
+
+<button id="change_folder"><a href="/diary/{{user.email}}/change_photoFolder" 
+onclick="window.open(this.href, '_blank', 'width=400px,height=600px,toolbars=no,scrollbars=no'); 
+return false;">폴더관리</a></button>
+
+
+
+{% endblock %}
+
+{% block style %}
+
+<style>
+#photo_letter {
+    position: absolute;
+    left: 70px;
+    top: 200px;
+    font-size: 19px;
+    color: lightblue;
+}
+
+#photo_line {
+    position: absolute;
+    left: 70px;
+    top: 220px;
+    width: 200px;
+    border: 1px solid lightblue;
+}
+
+#folder_outer {
+    position: absolute;
+    border: none;
+    margin: 0;
+    padding: 0;
+    left: 70px;
+    top: 240px;
+    width: 200px;
+    height: 350px;
+    border: 1px solid lightblue;
+}
+
+.folder_name {
+    text-align: left;
+    font-weight: bold;  
+    font-size: 15px;
+}
+
+a:link { color: rgb(0, 110, 255); text-decoration: none;}
+a:visited { color: rgb(0, 110, 255); text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
+
+#change_folder {
+    position: absolute;
+    left: 90px;
+    top: 650px;
+}
+
+#photo_outer {
+    position: absolute;
+    left: 327px;
+    top: 193px;
+    width: 600px;
+    height: 510px;
+    overflow: scroll;
+}
+
+.file_upload{
+    position: absolute;
+    left: 500px;
+    top: 10px;
+}
+
+</style>
+
+
+{% endblock %}

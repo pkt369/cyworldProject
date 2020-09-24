@@ -3,6 +3,8 @@ html, body{
     height: 100%;
     margin: 0;
     padding: 0;
+    background-image: url('/images/tile.png');
+    background-repeat: repeat;
 }
 .wrapper {
     text-align: center;
@@ -15,8 +17,6 @@ html, body{
 }
 .diaryBase { float: left; width: 980px; top:200px;}
 .musicBlock { 
-    background-color: black;
-    color: purple;
     width: 150px;
     height: 200px;
     padding: 20px;
@@ -36,7 +36,7 @@ html, body{
     outline: none; */
 }
 
-.profile_introduce { position: absolute; left: 90px; top: 350px;  width: 170px; word-break: keep-all; font-size: 14px;}
+.profile_introduce { position: absolute; left: 90px; top: 370px;  width: 170px; word-break: keep-all; font-size: 14px;}
 
 .changeButton {
     position: absolute;

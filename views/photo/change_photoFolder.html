@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폴더관리</title>
+</head>
+<body>
+    <div id="photo_letter">Photo Album</div>
+
+    <hr id="photo_line">
+
+    <button class="folder_bu createFolder"><a href="/diary/{{user.email}}/create_folder" 
+        onclick="window.open(this.href, '_blank', 'left= 300px,top= 300px,width=200px,height=150px,toolbars=no,scrollbars=no'); 
+        return false;">생성</a></button>
+
+
+    <div id="folder_outer" style="overflow: scroll;">
+        {% for folder in folders %}
+            <div class="folder_name" >{{folder.folder}}</div>
+            <button class="folder_bu updateFolder"><a href="/diary/{{user.email}}/update_folder/{{folder.folder}}" 
+                onclick="window.open(this.href, '_blank', 'left= 300px,top= 300px,width=200px,height=150px,toolbars=no,scrollbars=no'); 
+                return false;">수정</a></button>
+
+                {% if folder.folder !== "기본폴더" %}
+                <form action="/diary/{{user.email}}/delete_folder/{{folder.folder}}" method="post">
+                    <button type="submit" class="folder_bu deleteFolder">삭제</button>
+                </form>
+                {% endif %}
+                <hr>
+
+        {% endfor %}    
+    </div>
+
+    <button class="ok_bu" onclick="opener.parent.location.reload();window.close();">확인</button>
+
+    
+
+<style>
+    form {
+        display: inline;
+    }
+
+    #photo_letter {
+        position: absolute;
+        left: 30px;
+        top: 10px;
+        font-size: 19px;
+        color: lightblue;
+    }
+    
+    #photo_line {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        width: 300px;
+        border: 1px solid lightblue;
+    }
+
+    #folder_outer {
+        position: absolute;
+        border: none;
+        margin: 0;
+        padding: 0;
+        left: 30px;
+        top: 50px;
+        width: 300px;
+        height: 400px;
+        border: 1px solid lightblue;
+}
+
+    .folder_name {
+        text-align: left;
+        font-weight: bold;  
+        font-size: 15px;
+        display: inline-block;
+    }
+
+    .folder_bu {
+        font-size: 12px;
+        padding: 0px;
+        float: right;
+    }
+
+    .createFolder {
+        position: absolute;
+        left: 280px;
+        top: 15px;
+    }
+
+    .ok_bu {
+        position: absolute;
+        left: 160px;
+        top: 470px;
+    }
+</style>
+    
+</body>
+</html>
