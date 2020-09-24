@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { User, Guestbook, PhotoFolder } = require('../models');
+const { User, Guestbook, PhotoFolder, PhotoAlbum } = require('../models');
 
 const router = express.Router();
 
@@ -28,8 +28,20 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+const photo_upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, 'photoAlbum/');
+    },
+    filename(req, file, cb) {
+      const ext = path.extname(file.originalname);
+      cb(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
 router.post('/:id/image', upload.single('profile_picture'), (req, res) => {
-    
     console.log(req.file);
     const image = User.findOne({ where: req.params.id }).image;
     if(req.file === undefined){
@@ -51,6 +63,18 @@ router.post('/:id/image', upload.single('profile_picture'), (req, res) => {
     res.redirect(`/diary/${req.params.id}/`);
 });
 
+router.post('/:id/photo_upload', photo_upload.single('photo'), async (req, res, next) => {
+  console.log(req.file);
+  const user = await User.findOne({ where: { email: req.params.id }});
+  const folder = await PhotoFolder.findOne({ where: { folder: req.body.folder, UserId: user.id }});
+    const photo = PhotoAlbum.create({
+      image: '/photoAlbum/' + req.file.filename,
+      title: req.body.title,
+      PhotoFolderId : folder.id, //선택한 폴더
+      UserId: user.id,
+    });  
+    res.redirect(`/diary/` + req.params.id + `/success`);
+});
 
 router.post('/:id/guestbookCreate', isLoggedIn, async (req, res, next) => { 
   //여기서는 보내는 사람의 정보가 필요함.. req.user에 정보가 들어가 있음.
@@ -198,8 +222,28 @@ router.get('/:id/photoAlbum', async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { email: req.params.id } }); //블로그주인
     const folders = await PhotoFolder.findAll({ where: { UserId: user.id }});
+    const photos = await PhotoAlbum.findAll({ where: { UserId: user.id } });
   if (user) {
-    await res.render('diary_photoAlbum', { user : user, folders: folders }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
+    await res.render('diary_photoAlbum', { user : user, folders: folders, photos: photos }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
+  } else {
+    res.status(404).send('no user');
+  }
+      
+  } catch (error) {
+      console.error(error);
+      next(err);
+  } 
+});
+
+router.get('/:id/photoAlbum/:folder', async (req, res, next) => {
+  try {
+    const user = await User.findOne({ where: { email: req.params.id } }); //블로그주인
+    const folders = await PhotoFolder.findAll({ where: { UserId: user.id }}); 
+    const folder = await PhotoFolder.findOne({ where: { UserId: user.id, folder: req.params.folder }}); 
+    // 그유저의 아이디와 폴더의 이름을 대조해서 가져오기
+    const photos = await PhotoAlbum.findAll({ where: { UserId: user.id, PhotoFolderId: folder.id } });
+  if (user) {
+    await res.render('diary_photoAlbum', { user : user, folders: folders, photos: photos }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
   } else {
     res.status(404).send('no user');
   }
@@ -246,7 +290,7 @@ router.get('/:id/update_folder/:folder', async (req, res, next) => {
     const user = await User.findOne({ where: { email: req.params.id } }); //블로그주인
     const folders = await PhotoFolder.findOne({ where: { UserId: user.id, folder: req.params.folder }});
   if (user) {
-    await res.render('update_folder', { user : user, folders: folders }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
+    await res.render('update_folder', { user : user, folders: folders }); 
   } else {
     res.status(404).send('no user');
   }
@@ -260,9 +304,9 @@ router.get('/:id/update_folder/:folder', async (req, res, next) => {
 router.get('/:id/photo_upload', async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { email: req.params.id } }); //블로그주인
-    const folders = await PhotoFolder.findOne({ where: { UserId: user.id, folder: req.params.folder }});
+    const folders = await PhotoFolder.findAll({ where: { UserId: user.id }});
   if (user) {
-    await res.render('photo_upload', { user : user, folders: folders }); //넘겨줄때 데이터가 존재하면 여기로 들어오고 들어온다면 그정보를 넘겨주기.
+    await res.render('photo_upload', { user : user, folders: folders }); 
   } else {
     res.status(404).send('no user');
   }

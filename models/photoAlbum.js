@@ -25,5 +25,6 @@ module.exports = class PhotoAlbum extends Sequelize.Model {
 
     static associate(db) {
         db.PhotoAlbum.belongsTo(db.PhotoFolder);
+        db.PhotoAlbum.belongsTo(db.User);
     }
 };

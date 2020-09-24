@@ -46,6 +46,7 @@ module.exports = class User extends Sequelize.Model {
   static associate(db){
     db.User.hasMany(db.Guestbook);
     db.User.hasMany(db.PhotoFolder);
+    db.User.hasMany(db.PhotoAlbum);
   }
 
 };

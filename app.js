@@ -60,6 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static('images'));
 app.use('/views', express.static('views'));
 app.use('/uploads', express.static('uploads'));
+app.use('/photoAlbum', express.static('photoAlbum'));
 
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
