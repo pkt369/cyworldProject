@@ -161,7 +161,19 @@
         <button id="diary-write-btn" type="submit">게시글 올리기</button>     
     </form>
 
+    {% if user.email === posts.nick %}
+    <form id="diary-write-form"  method="post" action="/diary/{{user.email}}/diarypost">      
+        <div id="cover_box"></div>
+        <textarea id="diary-title" name="title" placeholder="제목을 입력하세요"></textarea>
+        <textarea id="diary-write-box" name="content" placeholder="내용을 입력하세요" ></textarea>       
+        <button id="diary-write-btn" type="submit">게시글 올리기</button>     
+    </form>
 
+    {% else %}
+
+    <h1>게시 불가능</h1>
+
+    {% endif %}
     <input type="date" id="TODAY" value="">
 
 
