@@ -12,13 +12,16 @@
 </head>
      <body> 
 
-      <div id = "whole">
+      <div class = "whole">
 
-        <img id="cyworldLogo" src="/images/logo.jpg" alt="싸이월드 로고" width="290" height="180" title="싸이월드 로고"
+        <img id="cyworldLogo" src="/images/logo.jpg" alt="싸이월드 로고" width="260" height="180" title="싸이월드 로고"
         >
         <img id="b" src="/images/main-a.png" alt="메인 화면" width="800" height="400" title="메인 화면"
         >
         <img id="c" src="/images/main-b.png" alt="메인 화면" width="800" height="150" title="메인 화면"
+        >
+
+        <img id="d" src="/images/main-c.png" alt="메인 화면" width="330" height="800" title="메인 화면"
         >
 
         <div id="main-letter">
@@ -34,20 +37,24 @@
             <button id="button-search" type="submit" class="s-btn">검색</button>
         </div>
 
-        <a id="input-homepage" type="submit" href="/diary" class="h-btn">미니홈피</a>
-        <a id="input-homepage" type="submit" class="h-btn">블로그</a>
-        <a id="input-homepage" type="submit" class="h-btn">클럽</a>
-        <a id="input-homepage" type="submit" class="h-btn">뮤직</a>
+        <button id="input-homepage" type="submit" class="h-btn">미니홈피</button>
+        <button id="input-homepage" type="submit" class="h-btn">블로그</button>
+        <button id="input-homepage" type="submit" class="h-btn">클럽</button>
+        <button id="input-homepage" type="submit" class="h-btn">뮤직</button>
 
         <!-- 로그인 시 바뀐 화면 -->
         <form id="login-complete-form">          
- 
+          
+          <img id="e" src="/images/happy.png" alt="메인 화면" width="50" height="50" title="메인 화면"
+        >
           <div class="user-name">{{ '어서오세요, ' + user.nick + '님' }}</div>
+          <div class="user-email">{{ user.email }}</div>
 
           <a id="mini-homepage" href="/diary/{{user.email}}" class="btn">미니홈피</a>
           <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
 
         </form>
+        </div>
 
 
         <!-- 캘린더 -->
@@ -58,7 +65,7 @@
         
             <header>
               
-              <div class="day">11</div>
+              <div class="day">16</div>
               <div class="month">September</div>
         
             </header>
@@ -144,7 +151,101 @@
         
         </div> <!-- end container -->
 
-    </div>
+        <h3 id="card-letter-main">오늘 읽을만한 글</h3>
 
-     </body>
-</html>
+        <hr class="card-line">
+        
+        
+        <!-- 카드 -->
+          <article id="card">
+              <header class="cardThumb">
+                  <a href="#">
+                      <img src="/images/binoo.jpg">
+                  </a>
+              </header>
+              <div class="cardDate">
+                  <span class="cardDateDay">1</span>
+                  <span class="cardDateMonth">Janv</span>
+              </div>
+              <div class="cardBody">
+                  <div class="cardCategory"><a href="#">Photos</a></div>
+                  <h2 class="cardTitle"><a href="#">화제의 강아지</a></h2>
+                  <div class="cardSubtitle">너무 귀여워서 화제가 된 강아지 입니다.</div>
+                  <p class="cardDescription">
+                      In ut quam quis magna pulvinar tempor at non elit. Ut lacinia elit vestibulum nulla accumsan, et fringilla mi accumsan. Etiam urna justo, luctus non porta eget, interdum quis tellus.
+                  </p>
+              </div>
+              <footer class="cardFooter">
+                  <span class="icon icon--time"></span>33 min
+                  <span class="icon icon--comment"></span><a href="#">1 comments</a>
+              </footer>
+          </article>
+      
+          <div id="card-a">
+          <article id="card">
+            <header class="cardThumb">
+                <a href="#">
+                  <img src="/images/mara.jpg">
+                </a>
+            </header>
+            <div class="cardDate">
+                <span class="cardDateDay">1</span>
+                <span class="cardDateMonth">Janv</span>
+            </div>
+            <div class="cardBody">
+                <div class="cardCategory"><a href="#">Photos</a></div>
+                <h2 class="cardTitle"><a href="#">화제의 음식</a></h2>
+                <div class="cardSubtitle">한번 먹으면 중독되는 음식, 마라샹궈에 대해 알아볼까요?</div>
+                <p class="cardDescription">
+                    In ut quam quis magna pulvinar tempor at non elit. Ut lacinia elit vestibulum nulla accumsan, et fringilla mi accumsan. Etiam urna justo, luctus non porta eget, interdum quis tellus.
+                </p>
+            </div>
+            <footer class="cardFooter">
+                <span class="icon icon--time"></span>33 min
+                <span class="icon icon--comment"></span><a href="#">1 comments</a>
+            </footer>
+        </article>
+      </div>
+      
+      
+      <!-- 장소 -->
+      
+      <h3 id="shopping-letter">오늘 가볼만한 장소</h3>
+
+<hr class="shopping-line">
+
+<div class="loc-profile">
+  <img src="/images/daeboo.jpg" class="image" height="200" width="200"/>
+  <h2 class="name"><a href="#">대부도</a></h2>
+  <h3 class="handle">#아름다운 도시 #섬</h3>
+  <h4 class="location">📍 안산시 대부동동 </h4>
+</div>
+
+<div class="loc-profile-a">
+  <img src="/images/river.jpg" class="image" height="200" width="200"/>
+  <h2 class="name"><a href="#">여의도 한강공원</a></h2>
+  <h3 class="handle">#한강 #뷰맛집 #자전거</h3>
+  <h4 class="location">📍 영등포구 여의동로 330</h4>
+</div>
+
+<div class="loc-profile-b">
+  <img src="/images/forest.jpg" class="image" height="200" width="200"/>
+  <h2 class="name"><a href="#">서울숲</a></h2>
+  <h3 class="handle">#피크닉 #카페거리 #꽃사슴</h3>
+  <h4 class="location">📍 성동구 뚝섬로 273</h4>
+</div>
+
+<footer id = "footer">
+  Made by&nbsp;
+  <a href="https://github.com/pkt369/cyworldProject" target="_blank">sejun & chaemin</a>
+</footer>
+      
+      
+      
+        </div>
+      
+      </div>
+        </div>
+      
+           </body>
+      </html>

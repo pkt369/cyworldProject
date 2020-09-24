@@ -1,5 +1,193 @@
 {% extends 'diaryBase.html' %}
 
-{% block diary %}
+{% block style %}
+<style>
+
+#write-button{
+    position: absolute;
+    left: 800px;
+    top: 225px;
+    color: rgb(0, 153, 204);
+}
+
+#today-border {
+    position: absolute;
+    left: 340px;
+    top: 200px;
+    width: 570px;
+    height: 50px;
+    border: 2px solid rgb(227, 227, 227);
+}
+
+ #TODAY{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 360px;
+    top: 211px;
+    color: rgb(0, 153, 204);
+} 
+/* .timeline{ /*전체 폼
+    
+}
+
+#twit-form{/*글 올리는 폼
+
+} */
+
+#diary-write-form{
+    position: absolute;
+    left: 350px;
+    top: 640px;
+}
+
+#diary-write-box{
+    width: 550px;
+    height: 60px;
+}
+
+#diary-write-btn{
+    display: inline-block;
+    padding: 0 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid rgb(0, 153, 204);
+    color: rgb(0, 153, 204);
+    height: 37px;
+    line-height: 37px;
+    vertical-align: top;
+    font-size: 12px;
+    position: absolute;
+    left: 460px;
+    top: -45px;
+}
+
+.diarypost {
+        position: absolute;
+        left: 340px;
+        top: 150px;
+        width: 570px;
+        height: 470px;
+        border: 2px solid #e9dcdc;
+        background-color: #e9dcdc;
+    }
+
+    #diary-outer {
+        position: absolute;
+        left: 340px;
+        top: 250px;
+        width: 570px;
+        height: 330px;
+        border: 2px solid #e9dcdc;
+        overflow: auto;
+    }
+
+    #diary-write {
+        position: absolute;
+        left: 0px;
+        width: 570px;
+        /* border: 2px solid black; */
+    }
+
+    .diary_background {
+        background-color: rgb(83, 105, 177);
+        margin: 0;
+        padding: 0;
+    }
+
+    .name_td {
+        padding-left: 60px;
+        float: left;
+        font-size: 20px;
+        
+    }
+
+    
+    .diary_content {
+        
+        display:inline-block;
+        vertical-align: middle; 
+        height: 150px;
+    }
+
+    #diary-title{
+         position: absolute; 
+        left: 1px;
+        top: -40px;
+    }
+
+    
+
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div id="today-border"></div>
+<input type="date" id="TODAY" value="">
+
+
+    <div id="diary-outer">    
+    <table id="diary-write">
+    <tbody>
+    {% for i in post %}
+
+        <tr class="diary_background">
+        <td class = "name_td" colspan="2">
+            {{i.title}}
+            <span style="font-size: 12px">{{i.createdAt}}</span>
+        </td>
+        <!-- <td style="font-size: 10px;">{{i.createdAt}}</td> -->
+        </tr>
+
+        <tr style="display: table;">
+        <td class="diary_content">{{i.content}}</td>
+        </tr>
+        <tr style="height: 20px;"><td></td></tr>
+
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    
+    <form id="diary-write-form"  method="post" action="/diary/{{user.email}}/diarypost">      
+        <div id="cover_box"></div>
+        <textarea id="diary-title" name="title" placeholder="제목을 입력하세요"></textarea>
+        <textarea id="diary-write-box" name="content" placeholder="내용을 입력하세요" ></textarea>       
+        <button id="diary-write-btn" type="submit">게시글 올리기</button>     
+    </form>
+
+
+    <input type="date" id="TODAY" value="">
+
+
 
 {% endblock %}
+
+{% block script %}
+
+<script>
+
+window.onload = function(){
+    var dt = new Date();
+    var Year = dt.getFullYear();        
+    var Month = "" + (dt.getMonth()+1);
+    var Day = "" + dt.getDate();            
+    
+    if(Month.length < 2) Month = "0" + Month;
+    if(Day.length < 2) Day = "0" + Day;
+    
+    var Today = Year.toString() + Month + Day;
+    
+    document.getElementById("TODAY").value = Today;
+} 
+
+</script>
+
+{% endblock %}
+
+
